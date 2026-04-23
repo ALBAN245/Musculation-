@@ -5,244 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plan Sèche Agressive — 28 Jours</title>
 <style>
-  :root {
-    --bg: #0f1117;
-    --bg2: #1a1d27;
-    --bg3: #22263a;
-    --card: #1e2235;
-    --border: #2e3350;
-    --text: #e8eaf0;
-    --muted: #8b90a8;
-    --blue: #3b82f6;
-    --blue-bg: #1e3a5f;
-    --blue-light: #93c5fd;
-    --green: #22c55e;
-    --green-bg: #14532d;
-    --green-light: #86efac;
-    --amber: #f59e0b;
-    --amber-bg: #451a03;
-    --amber-light: #fcd34d;
-    --red: #ef4444;
-    --red-bg: #450a0a;
-    --red-light: #fca5a5;
-    --purple: #a855f7;
-    --purple-bg: #2e1065;
-    --purple-light: #d8b4fe;
-    --teal: #14b8a6;
-    --teal-bg: #042f2e;
-    --accent: #f97316;
-    --radius: 10px;
-    --radius-lg: 14px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; }
-
-  /* NAV */
-  nav { background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 2rem; height: 56px; overflow-x: auto; }
-  .nav-brand { font-weight: 700; font-size: 15px; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
-  .nav-tabs { display: flex; gap: 4px; }
-  .nav-tab { padding: 6px 14px; border-radius: 8px; border: none; background: transparent; color: var(--muted); font-size: 13px; cursor: pointer; white-space: nowrap; transition: all .15s; }
-  .nav-tab:hover { background: var(--bg3); color: var(--text); }
-  .nav-tab.active { background: var(--blue-bg); color: var(--blue-light); font-weight: 600; }
-
-  /* LAYOUT */
-  .page { display: none; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .page.active { display: block; }
-
-  /* HERO */
-  .hero { background: linear-gradient(135deg, #0f1117 0%, #1a1d27 50%, #0f172a 100%); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; margin-bottom: 2rem; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--accent), var(--purple)); }
-  .hero h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: .5rem; }
-  .hero h1 span { color: var(--accent); }
-  .hero p { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
-  .hero-stats { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-  .hero-stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: .75rem 1.25rem; text-align: center; }
-  .hero-stat .val { font-size: 1.4rem; font-weight: 700; color: var(--blue-light); }
-  .hero-stat .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-  /* CARDS */
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
-  .card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-  .card-title .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-
-  /* GRID */
-  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-  .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .75rem; }
-
-  /* MACRO CARDS */
-  .macro-card { background: var(--bg3); border-radius: var(--radius); padding: 1rem; text-align: center; border: 1px solid var(--border); }
-  .macro-card .num { font-size: 1.8rem; font-weight: 700; }
-  .macro-card .unit { font-size: 13px; color: var(--muted); }
-
-  /* TABLE */
-  .tbl-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { background: var(--bg3); color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: .05em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-  td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  tr:nth-child(even) td { background: rgba(255,255,255,.02); }
-
-  /* BADGE */
-  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
-  .b-blue { background: var(--blue-bg); color: var(--blue-light); }
-  .b-green { background: var(--green-bg); color: var(--green-light); }
-  .b-amber { background: var(--amber-bg); color: var(--amber-light); }
-  .b-red { background: var(--red-bg); color: var(--red-light); }
-  .b-purple { background: var(--purple-bg); color: var(--purple-light); }
-  .b-teal { background: var(--teal-bg); color: var(--teal); }
-
-  /* WEEK SELECTOR */
-  .week-sel { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .week-btn { padding: 8px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 13px; cursor: pointer; font-weight: 500; transition: all .15s; }
-  .week-btn:hover { border-color: var(--blue); color: var(--text); }
-  .week-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
-
-  /* DAY NAV */
-  .day-nav { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.5rem; }
-  .day-nav button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; flex-shrink: 0; }
-  .day-nav button:hover { background: var(--blue); border-color: var(--blue); }
-  .day-nav button:disabled { opacity: .3; cursor: default; }
-  .day-info { flex: 1; text-align: center; }
-  .day-info .day-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 3px; }
-  .day-info .day-sub { font-size: 12px; color: var(--muted); }
-  .day-counter { font-size: 12px; color: var(--muted); flex-shrink: 0; }
-
-  /* MEAL CARD */
-  .meal-row { display: flex; gap: 1rem; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-  .meal-row:last-child { border-bottom: none; }
-  .meal-time { font-size: 12px; font-weight: 700; color: var(--blue-light); min-width: 44px; flex-shrink: 0; padding-top: 2px; }
-  .meal-content { flex: 1; }
-  .meal-label { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-  .meal-detail { font-size: 13px; color: var(--muted); line-height: 1.5; }
-  .meal-macros { display: flex; gap: 8px; margin-top: 6px; }
-  .meal-macro { font-size: 11px; background: var(--bg3); padding: 2px 8px; border-radius: 20px; color: var(--muted); }
-
-  /* SESSION BLOCK */
-  .session-block { margin-bottom: 1.5rem; }
-  .session-header { background: var(--bg3); border-left: 3px solid var(--blue); padding: 8px 14px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--blue-light); margin-bottom: 10px; }
-  .exo-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); gap: 12px; }
-  .exo-row:last-child { border-bottom: none; }
-  .exo-name { font-size: 13px; color: var(--text); }
-  .exo-sets { font-size: 12px; color: var(--amber-light); font-weight: 600; white-space: nowrap; }
-  .exo-note { font-size: 11px; color: var(--muted); }
-
-  /* TIP / WARN */
-  .tip { background: rgba(59,130,246,.08); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 14px; font-size: 13px; color: var(--blue-light); margin-bottom: 1rem; line-height: 1.6; }
-  .warn { background: rgba(239,68,68,.08); border-left: 3px solid var(--red); border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 14px; font-size: 13px; color: var(--red-light); margin-bottom: 1rem; line-height: 1.6; }
-  .success { background: rgba(34,197,94,.08); border-left: 3px solid var(--green); border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 14px; font-size: 13px; color: var(--green-light); margin-bottom: 1rem; line-height: 1.6; }
-
-  /* SECTION TITLE */
-  .section-title { font-size: 1.25rem; font-weight: 700; margin: 2rem 0 1rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
-  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  /* PROGRESS BAR */
-  .prog-wrap { background: var(--bg3); border-radius: 4px; height: 6px; overflow: hidden; margin-top: 6px; }
-  .prog-bar { height: 6px; border-radius: 4px; transition: width .3s; }
-
-  /* CALENDAR GRID */
-  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-  .cal-day { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 8px; text-align: center; cursor: pointer; transition: all .15s; }
-  .cal-day:hover { border-color: var(--blue); transform: translateY(-2px); }
-  .cal-day.training { border-top: 3px solid var(--blue); }
-  .cal-day.cardio { border-top: 3px solid var(--amber); }
-  .cal-day.rest { border-top: 3px solid var(--green); }
-  .cal-day.selected { background: var(--blue-bg); border-color: var(--blue); }
-  .cal-day .cd-num { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
-  .cal-day .cd-name { font-size: 10px; font-weight: 600; }
-  .cal-day .cd-type { font-size: 9px; color: var(--muted); margin-top: 2px; }
-  .cal-day .cd-kcal { font-size: 9px; color: var(--amber-light); margin-top: 1px; }
-
-  /* SUPP TABLE */
-  .supp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-  .supp-card { background: var(--bg3); border-radius: var(--radius); padding: 1rem; border: 1px solid var(--border); }
-  .supp-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
-  .supp-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; }
-  .supp-row span:first-child { color: var(--muted); }
-  .supp-row span:last-child { color: var(--text); font-weight: 500; }
-
-  /* MOBILE */
-  @media (max-width: 640px) {
-    .hero h1 { font-size: 2rem; }
-    .cal-grid { grid-template-columns: repeat(4, 1fr); }
-    .hero-stats { gap: .5rem; }
-    .hero-stat { padding: .5rem .75rem; }
-    .hero-stat .val { font-size: 1.1rem; }
-    .page { padding: 1rem; }
-    .day-nav { padding: .75rem 1rem; }
+  :root{--bg:#0f1117;--bg2:#1a1d27;--bg3:#22263a;--card:#1e2235;--border:#2e3350;--text:#e8eaf0;--muted:#8b90a8;--blue:#3b82f6;--blue-bg:#1e3a5f;--blue-light:#93c5fd;--green:#22c55e;--green-bg:#14532d;--green-light:#86efac;--amber:#f59e0b;--amber-bg:#451a03;--amber-light:#fcd34d;--red:#ef4444;--red-bg:#450a0a;--red-light:#fca5a5;--purple:#a855f7;--purple-bg:#2e1065;--purple-light:#d8b4fe;--teal:#14b8a6;--teal-bg:#042f2e;--accent:#f97316;--radius:10px;--radius-lg:14px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
+  nav{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:56px;overflow-x:auto}
+  .nav-brand{font-weight:700;font-size:15px;color:var(--accent);white-space:nowrap;flex-shrink:0}
+  .nav-tabs{display:flex;gap:4px}
+  .nav-tab{padding:6px 14px;border-radius:8px;border:none;background:transparent;color:var(--muted);font-size:13px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .nav-tab:hover{background:var(--bg3);color:var(--text)}
+  .nav-tab.active{background:var(--blue-bg);color:var(--blue-light);font-weight:600}
+  .page{display:none;max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+  .page.active{display:block}
+  .hero{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem 2rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--accent),var(--purple))}
+  .hero h1{font-size:2.8rem;font-weight:800;letter-spacing:-1px;margin-bottom:.5rem}
+  .hero h1 span{color:var(--accent)}
+  .hero p{color:var(--muted);margin-bottom:1.5rem}
+  .hero-stats{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+  .hero-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;text-align:center}
+  .hero-stat .val{font-size:1.4rem;font-weight:700;color:var(--blue-light)}
+  .hero-stat .lbl{font-size:11px;color:var(--muted);margin-top:2px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
+  .card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem}
+  .macro-card{background:var(--bg3);border-radius:var(--radius);padding:1rem;text-align:center;border:1px solid var(--border)}
+  .macro-card .num{font-size:1.8rem;font-weight:700}
+  .macro-card .unit{font-size:12px;color:var(--muted)}
+  .tbl-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:var(--bg3);color:var(--muted);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.05em;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+  .b-blue{background:var(--blue-bg);color:var(--blue-light)}
+  .b-green{background:var(--green-bg);color:var(--green-light)}
+  .b-amber{background:var(--amber-bg);color:var(--amber-light)}
+  .b-purple{background:var(--purple-bg);color:var(--purple-light)}
+  .b-teal{background:var(--teal-bg);color:var(--teal)}
+  .week-sel{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+  .week-btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;cursor:pointer;transition:all .15s}
+  .week-btn:hover{border-color:var(--blue);color:var(--text)}
+  .week-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .day-nav{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.5rem}
+  .day-nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+  .day-nav button:hover:not(:disabled){background:var(--blue);border-color:var(--blue)}
+  .day-nav button:disabled{opacity:.3;cursor:default}
+  .day-info{flex:1;text-align:center}
+  .day-info .day-name{font-size:1.1rem;font-weight:700;margin-bottom:3px}
+  .day-counter{font-size:12px;color:var(--muted);flex-shrink:0}
+  /* MEAL */
+  .meal-row{display:flex;gap:1rem;padding:16px 0;border-bottom:1px solid var(--border)}
+  .meal-row:last-of-type{border-bottom:none}
+  .meal-time{font-size:12px;font-weight:700;color:var(--blue-light);min-width:48px;flex-shrink:0;padding-top:2px}
+  .meal-content{flex:1}
+  .meal-label{font-weight:700;font-size:14px;margin-bottom:8px;color:var(--text)}
+  .meal-items{list-style:none;margin-bottom:8px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .meal-item{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 12px;border-bottom:1px solid var(--border);gap:12px;font-size:13px}
+  .meal-item:last-child{border-bottom:none}
+  .meal-item:nth-child(even){background:rgba(255,255,255,.02)}
+  .item-name{color:var(--text);flex:1}
+  .item-prep{font-size:11px;color:var(--muted);margin-top:2px;font-style:italic}
+  .item-qty{color:var(--amber-light);font-weight:600;white-space:nowrap;flex-shrink:0;font-size:13px}
+  .meal-macros{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .mmac{font-size:11px;background:var(--bg3);padding:2px 8px;border-radius:20px;color:var(--muted)}
+  .mmac.kcal{color:var(--amber-light);background:var(--amber-bg)}
+  /* EXO */
+  .session-hdr{background:var(--bg3);border-left:3px solid var(--blue);padding:8px 14px;border-radius:0 var(--radius) var(--radius) 0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-light);margin-bottom:10px}
+  .exo-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);gap:12px}
+  .exo-row:last-child{border-bottom:none}
+  .exo-name{font-size:13px;color:var(--text)}
+  .exo-note{font-size:11px;color:var(--muted);margin-top:2px}
+  .exo-sets{font-size:12px;color:var(--amber-light);font-weight:600;white-space:nowrap;flex-shrink:0}
+  .tip{background:rgba(59,130,246,.08);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;font-size:13px;color:var(--blue-light);margin-bottom:1rem;line-height:1.6}
+  .warn{background:rgba(239,68,68,.08);border-left:3px solid var(--red);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;font-size:13px;color:var(--red-light);margin-bottom:1rem;line-height:1.6}
+  .stitle{font-size:1.2rem;font-weight:700;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:10px}
+  .stitle::after{content:'';flex:1;height:1px;background:var(--border)}
+  .prog-wrap{background:var(--bg3);border-radius:4px;height:6px;overflow:hidden;margin-top:6px}
+  .prog-bar{height:6px;border-radius:4px}
+  /* CALENDAR */
+  .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:1.5rem}
+  .cal-day{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 4px;text-align:center;cursor:pointer;transition:all .15s}
+  .cal-day:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .cal-day.training{border-top:3px solid var(--blue)}
+  .cal-day.cardio{border-top:3px solid var(--amber)}
+  .cal-day.rest{border-top:3px solid var(--green)}
+  .cal-day.selected{background:var(--blue-bg);border-color:var(--blue)}
+  .cal-day .cdn{font-size:10px;color:var(--muted);margin-bottom:1px}
+  .cal-day .cdd{font-size:10px;font-weight:600}
+  .cal-day .cdt{font-size:9px;color:var(--muted);margin-top:1px}
+  .cal-day .cdk{font-size:9px;color:var(--amber-light);margin-top:1px}
+  /* COURSES */
+  .c-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .c-item:last-child{border-bottom:none}
+  .c-item span:first-child{color:var(--text)}
+  .c-item span:last-child{color:var(--amber-light);font-weight:600}
+  .c-cat{font-size:11px;font-weight:700;color:var(--blue-light);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  /* SUPP */
+  .supp-card{background:var(--bg3);border-radius:var(--radius);padding:1rem;border:1px solid var(--border)}
+  .supp-name{font-weight:700;font-size:14px;margin-bottom:8px}
+  .supp-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border)}
+  .supp-row:last-child{border-bottom:none}
+  .supp-row span:first-child{color:var(--muted)}
+  .supp-row span:last-child{color:var(--text);font-weight:500}
+  .total-bar{margin-top:12px;padding:12px;background:var(--bg3);border-radius:var(--radius);display:flex;gap:16px;flex-wrap:wrap;font-size:13px;align-items:center}
+  @media(max-width:640px){
+    .hero h1{font-size:1.8rem}
+    .cal-grid{grid-template-columns:repeat(4,1fr)}
+    .page{padding:1rem}
+    .day-nav{padding:.75rem 1rem}
+    .meal-row{flex-direction:column;gap:.5rem}
   }
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
-    <div class="nav-brand">&#9889; Sèche 28J</div>
+    <div class="nav-brand">⚡ Sèche 28J</div>
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="showPage('home')">Accueil</button>
-      <button class="nav-tab" onclick="showPage('planning')">Planning</button>
-      <button class="nav-tab" onclick="showPage('seances')">Séances</button>
-      <button class="nav-tab" onclick="showPage('nutrition')">Nutrition</button>
-      <button class="nav-tab" onclick="showPage('supple')">Suppléments</button>
-      <button class="nav-tab" onclick="showPage('regles')">Règles</button>
+      <button class="nav-tab active" onclick="showPage('home',this)">Accueil</button>
+      <button class="nav-tab" onclick="showPage('planning',this)">Planning</button>
+      <button class="nav-tab" onclick="showPage('seances',this)">Séances</button>
+      <button class="nav-tab" onclick="showPage('nutrition',this)">Nutrition</button>
+      <button class="nav-tab" onclick="showPage('courses',this)">Courses</button>
+      <button class="nav-tab" onclick="showPage('supple',this)">Suppléments</button>
+      <button class="nav-tab" onclick="showPage('regles',this)">Règles</button>
     </div>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════ HOME ═══════════════════════════════════ -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
     <h1>Plan Sèche <span>Agressive</span></h1>
     <p>Triple session · Préservation musculaire maximale · Nutrition cyclée sur 28 jours</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="val">185g</div><div class="lbl">Protéines / jour</div></div>
-      <div class="hero-stat"><div class="val" style="color:#f97316">3×</div><div class="lbl">Sessions / jour</div></div>
-      <div class="hero-stat"><div class="val" style="color:#22c55e">28</div><div class="lbl">Jours de programme</div></div>
-      <div class="hero-stat"><div class="val" style="color:#a855f7">~2150</div><div class="lbl">Kcal moyenne</div></div>
+      <div class="hero-stat"><div class="val" style="color:var(--accent)">3×</div><div class="lbl">Sessions / jour</div></div>
+      <div class="hero-stat"><div class="val" style="color:var(--green-light)">28</div><div class="lbl">Jours</div></div>
+      <div class="hero-stat"><div class="val" style="color:var(--purple-light)">~2150</div><div class="lbl">Kcal moy.</div></div>
     </div>
   </div>
-
-  <div class="section-title">Structure du programme</div>
+  <div class="stitle">Structure hebdomadaire</div>
   <div class="grid2">
     <div class="card">
       <div class="card-title"><div class="dot"></div>Semaine type</div>
-      <table>
-        <thead><tr><th>Jour</th><th>Matin</th><th>Midi</th><th>Soir</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Lundi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Push</span></td><td><span class="badge b-teal">Marche</span></td></tr>
-          <tr><td><strong>Mardi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Pull</span></td><td><span class="badge b-teal">Marche</span></td></tr>
-          <tr><td><strong>Mercredi</strong></td><td colspan="3"><span class="badge b-green">Repos actif</span></td></tr>
-          <tr><td><strong>Jeudi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Legs</span></td><td><span class="badge b-teal">Marche</span></td></tr>
-          <tr><td><strong>Vendredi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Upper</span></td><td><span class="badge b-purple">HIIT</span></td></tr>
-          <tr><td><strong>Samedi</strong></td><td><span class="badge b-amber">Course longue</span></td><td colspan="2"><span class="badge b-teal">Marche 60'</span></td></tr>
-          <tr><td><strong>Dimanche</strong></td><td colspan="3"><span class="badge b-green">Repos total</span></td></tr>
-        </tbody>
-      </table>
+      <table><thead><tr><th>Jour</th><th>Matin 8h</th><th>Midi 12h</th><th>Soir 19h</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lundi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Push</span></td><td><span class="badge b-teal">Marche</span></td></tr>
+        <tr><td><strong>Mardi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Pull</span></td><td><span class="badge b-teal">Marche</span></td></tr>
+        <tr><td><strong>Mercredi</strong></td><td colspan="3" style="text-align:center"><span class="badge b-green">Repos actif</span></td></tr>
+        <tr><td><strong>Jeudi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Legs</span></td><td><span class="badge b-teal">Marche</span></td></tr>
+        <tr><td><strong>Vendredi</strong></td><td><span class="badge b-amber">Course</span></td><td><span class="badge b-blue">Upper</span></td><td><span class="badge b-purple">HIIT</span></td></tr>
+        <tr><td><strong>Samedi</strong></td><td><span class="badge b-amber">Course longue</span></td><td colspan="2"><span class="badge b-teal">Marche 60'</span></td></tr>
+        <tr><td><strong>Dimanche</strong></td><td colspan="3" style="text-align:center"><span class="badge b-green">Repos total</span></td></tr>
+      </tbody></table>
     </div>
     <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Progression sur 4 semaines</div>
-      <div style="margin-bottom: 14px;">
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S1 — Adaptation</span><span style="color:var(--muted)">Course 30', marche 45'</span></div>
-        <div class="prog-wrap"><div class="prog-bar" style="width:25%;background:var(--blue)"></div></div>
-      </div>
-      <div style="margin-bottom: 14px;">
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S2 — Charge</span><span style="color:var(--muted)">Course 35', marche 50'</span></div>
-        <div class="prog-wrap"><div class="prog-bar" style="width:50%;background:var(--green)"></div></div>
-      </div>
-      <div style="margin-bottom: 14px;">
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S3 — Volume max</span><span style="color:var(--muted)">Course 40', marche 55'</span></div>
-        <div class="prog-wrap"><div class="prog-bar" style="width:75%;background:var(--amber)"></div></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S4 — Affinage</span><span style="color:var(--muted)">Course 40', cardio quotidien</span></div>
-        <div class="prog-wrap"><div class="prog-bar" style="width:100%;background:var(--accent)"></div></div>
-      </div>
-      <div class="tip" style="margin-top:1rem;margin-bottom:0">Les 3 derniers jours de S4 : sodium réduit + eau à 4L/j. C'est là que les abdos apparaissent.</div>
+      <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Progression 4 semaines</div>
+      <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S1 — Adaptation</span><span style="color:var(--muted)">Course 30' · Marche 45'</span></div><div class="prog-wrap"><div class="prog-bar" style="width:25%;background:var(--blue)"></div></div></div>
+      <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S2 — Charge</span><span style="color:var(--muted)">Course 35' · Marche 50'</span></div><div class="prog-wrap"><div class="prog-bar" style="width:50%;background:var(--green)"></div></div></div>
+      <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S3 — Volume max</span><span style="color:var(--muted)">Course 40' · Marche 55'</span></div><div class="prog-wrap"><div class="prog-bar" style="width:75%;background:var(--amber)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>S4 — Affinage</span><span style="color:var(--muted)">Course 40' · Marche 60'</span></div><div class="prog-wrap"><div class="prog-bar" style="width:100%;background:var(--accent)"></div></div></div>
     </div>
   </div>
-
-  <div class="section-title">Macros cyclées</div>
+  <div class="stitle">Macros cyclées</div>
   <div class="grid4">
     <div class="macro-card"><div class="num" style="color:var(--blue-light)">185g</div><div class="unit">Protéines (fixe)</div></div>
     <div class="macro-card"><div class="num" style="color:var(--amber-light)">220g</div><div class="unit">Glucides training</div></div>
@@ -251,39 +182,36 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════ PLANNING ══════════════════════════════════ -->
+<!-- PLANNING -->
 <div id="page-planning" class="page">
-  <div class="section-title">Cardio — Détail des sessions</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>Session</th><th>Fréquence</th><th>Durée</th><th>Paramètres</th><th>FC cible</th><th>Kcal est.</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Course à jeun</strong><br><span style="color:var(--muted);font-size:11px">zone 2</span></td><td>L / M / J / V<br><span style="color:var(--muted);font-size:11px">matin 6h30</span></td><td>S1: 30'<br>S2: 35'<br>S3–S4: 40'</td><td>Café noir uniquement avant. Allure conversationnelle.</td><td>125–140 bpm</td><td>~280–350 kcal</td></tr>
-        <tr><td><strong>Course longue</strong></td><td>Samedi matin<br><span style="color:var(--muted);font-size:11px">7h00</span></td><td>S1: 45'<br>S2: 50'<br>S3–S4: 55'</td><td>Allure modérée, hydratation 500ml avant.</td><td>130–145 bpm</td><td>~400–480 kcal</td></tr>
-        <tr><td><strong>Marche inclinée</strong></td><td>L / M / J soir<br>+ Samedi<br><span style="color:var(--muted);font-size:11px">19h00</span></td><td>S1: 45'<br>S2: 50'<br>S3: 55'<br>S4: 60'</td><td>12% inclinaison · 6 km/h · Zone lipides</td><td>115–130 bpm</td><td>~350–450 kcal</td></tr>
-        <tr><td><strong>HIIT</strong></td><td>Vendredi soir<br><span style="color:var(--muted);font-size:11px">19h00</span></td><td>S1–S2: ~20'<br>S3–S4: ~28'</td><td>30s sprint / 90s récup<br>S1–S2: 8 cycles · S3–S4: 12 cycles</td><td>Max → récup</td><td>~300–400 kcal</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section-title">Marche inclinée — protocole détaillé</div>
+  <div class="stitle">Sessions cardio — détail</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Session</th><th>Fréquence</th><th>Durée par semaine</th><th>Paramètres</th><th>FC cible</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Course à jeun</strong><br><span style="color:var(--muted);font-size:11px">Zone 2</span></td><td>L/M/J/V matin</td><td>S1:30' · S2:35' · S3:40' · S4:40'</td><td>Café noir uniquement. Allure conversationnelle.</td><td>125–140 bpm</td></tr>
+      <tr><td><strong>Course longue</strong></td><td>Samedi matin</td><td>S1:45' · S2:50' · S3:55' · S4:55'</td><td>Allure modérée, 500ml eau avant.</td><td>130–145 bpm</td></tr>
+      <tr><td><strong>Marche inclinée</strong></td><td>L/M/J soir + Samedi</td><td>S1:45' · S2:50' · S3:55' · S4:60'</td><td>12% inclinaison · 6 km/h · Bras libres</td><td>115–130 bpm</td></tr>
+      <tr><td><strong>HIIT</strong></td><td>Vendredi soir</td><td>S1–S2: 8 cycles · S3–S4: 12 cycles</td><td>30s sprint / 90s récup</td><td>Max → récup</td></tr>
+    </tbody>
+  </table></div>
+  <div class="stitle">Marche inclinée — protocole</div>
   <div class="grid2">
     <div class="card">
       <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Réglages tapis</div>
-      <div class="exo-row"><span class="exo-name">Inclinaison</span><span class="exo-sets">12% (idéal)</span></div>
+      <div class="exo-row"><span class="exo-name">Inclinaison</span><span class="exo-sets">12%</span></div>
       <div class="exo-row"><span class="exo-name">Vitesse</span><span class="exo-sets">5,5–6,5 km/h</span></div>
       <div class="exo-row"><span class="exo-name">FC cible</span><span class="exo-sets">115–130 bpm</span></div>
-      <div class="exo-row"><span class="exo-name">Timing optimal</span><span class="exo-sets">À jeun le matin</span></div>
-      <div class="exo-row"><span class="exo-name">Ne pas tenir les barres</span><span class="exo-sets">Bras libres</span></div>
+      <div class="exo-row"><span class="exo-name">Bras</span><span class="exo-sets">Libres — ne pas tenir les barres</span></div>
+      <div class="exo-row"><span class="exo-name">Kcal estimées</span><span class="exo-sets">~350–450 kcal/session</span></div>
     </div>
     <div class="card">
       <div class="card-title"><div class="dot" style="background:var(--amber)"></div>Pourquoi la marche inclinée ?</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7">La marche inclinée à 12% mobilise autant de calories qu'un jogging modéré, mais avec un impact quasi nul sur la récupération musculaire. Elle cible directement les graisses (zone 2 étendue) sans déclencher de réponse cortisol élevée. C'est l'outil numéro 1 de la sèche agressive pour conserver la masse musculaire.</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">12% d'inclinaison à 6 km/h brûle autant qu'un jogging modéré, avec quasi zéro impact sur la récupération musculaire. Elle cible directement la zone lipidique sans déclencher de pic de cortisol. Outil numéro 1 pour conserver le muscle en sèche.</p>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ SÉANCES ══════════════════════════════════ -->
+<!-- SÉANCES -->
 <div id="page-seances" class="page">
   <div class="week-sel">
     <button class="week-btn active" onclick="showWeek(1,this)">Semaine 1 — Adaptation</button>
@@ -291,203 +219,224 @@
     <button class="week-btn" onclick="showWeek(3,this)">Semaine 3 — Volume max</button>
     <button class="week-btn" onclick="showWeek(4,this)">Semaine 4 — Affinage</button>
   </div>
-
   <div id="sw1">
-    <div class="tip">S1 · 3–4 séries · 10–12 reps · Repos 75 s · Tempo 3-1-1 (3s descente, 1s pause, 1s montée)</div>
+    <div class="tip">S1 · 3–4 séries · 10–12 reps · Repos 75s · Tempo 3-1-1 (3s descente, 1s pause, 1s montée)</div>
     <div class="grid2">
       <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Lundi — Push <span class="badge b-blue" style="margin-left:auto">Poitrine / Épaules / Triceps</span></div>
-        <div class="session-header">Séance muscu — 12h00</div>
-        <div class="exo-row"><div><div class="exo-name">Développé couché haltères</div><div class="exo-note">Tempo contrôlé, coudes à 75°</div></div><span class="exo-sets">4 × 10–12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Développé incliné barre</div><div class="exo-note">Inclinaison 30°</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Élévations latérales haltères</div><div class="exo-note">Légère flexion du coude</div></div><span class="exo-sets">4 × 15</span></div>
-        <div class="exo-row"><div><div class="exo-name">Développé Arnold</div><div class="exo-note">Rotation complète</div></div><span class="exo-sets">3 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Dips lestés</div><div class="exo-note">Corps droit, pectoraux</div></div><span class="exo-sets">3 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Pushdown câble (triceps)</div><div class="exo-note">Coudes fixes au corps</div></div><span class="exo-sets">3 × 15</span></div>
-        <div class="exo-row"><div><div class="exo-name">Crunch câble</div><div class="exo-note">Focus contraction abs</div></div><span class="exo-sets">3 × 20</span></div>
+        <div class="card-title"><div class="dot"></div>Lundi — Push <span class="badge b-blue" style="margin-left:auto">Poitrine/Épaules/Triceps</span></div>
+        <div class="session-hdr">Muscu — 12h00</div>
+        <div class="exo-row"><div><div class="exo-name">Développé couché haltères</div><div class="exo-note">Tempo 3-1-1, coudes à 75°</div></div><span class="exo-sets">4×10–12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Développé incliné barre</div><div class="exo-note">Inclinaison 30°</div></div><span class="exo-sets">4×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Élévations latérales</div><div class="exo-note">Légère flexion du coude</div></div><span class="exo-sets">4×15</span></div>
+        <div class="exo-row"><div><div class="exo-name">Développé Arnold</div><div class="exo-note">Rotation complète</div></div><span class="exo-sets">3×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Dips lestés</div><div class="exo-note">Corps droit, focus pectoraux</div></div><span class="exo-sets">3×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Pushdown câble (triceps)</div><div class="exo-note">Coudes fixes au corps</div></div><span class="exo-sets">3×15</span></div>
+        <div class="exo-row"><div><div class="exo-name">Crunch câble</div><div class="exo-note">Focus contraction abdos</div></div><span class="exo-sets">3×20</span></div>
       </div>
       <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Mardi — Pull <span class="badge b-teal" style="margin-left:auto">Dos / Biceps</span></div>
-        <div class="session-header">Séance muscu — 12h00</div>
-        <div class="exo-row"><div><div class="exo-name">Tractions lestées</div><div class="exo-note">Prise large pronation</div></div><span class="exo-sets">4 × 8–10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Rowing barre pronation</div><div class="exo-note">Buste à 45°, tirage ombilic</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tirage poulie haute prise neutre</div><div class="exo-note">Coudes vers les hanches</div></div><span class="exo-sets">3 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Facepull câble</div><div class="exo-note">Coudes hauts, rotation externe</div></div><span class="exo-sets">3 × 20</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl barre droite</div><div class="exo-note">Coudes fixes</div></div><span class="exo-sets">3 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl marteau haltères</div><div class="exo-note">Prise neutre, long supinateur</div></div><span class="exo-sets">3 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Relevés jambes suspendus</div><div class="exo-note">Mouvement lent et contrôlé</div></div><span class="exo-sets">3 × 15</span></div>
+        <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Mardi — Pull <span class="badge b-teal" style="margin-left:auto">Dos/Biceps</span></div>
+        <div class="session-hdr">Muscu — 12h00</div>
+        <div class="exo-row"><div><div class="exo-name">Tractions lestées</div><div class="exo-note">Prise large pronation</div></div><span class="exo-sets">4×8–10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Rowing barre pronation</div><div class="exo-note">Buste 45°, tirage ombilic</div></div><span class="exo-sets">4×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Tirage poulie haute neutre</div><div class="exo-note">Coudes vers les hanches</div></div><span class="exo-sets">3×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Facepull câble</div><div class="exo-note">Coudes hauts, rotation externe</div></div><span class="exo-sets">3×20</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl barre droite</div><div class="exo-note">Coudes fixes</div></div><span class="exo-sets">3×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl marteau haltères</div><div class="exo-note">Prise neutre</div></div><span class="exo-sets">3×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Relevés jambes suspendus</div><div class="exo-note">Lent et contrôlé</div></div><span class="exo-sets">3×15</span></div>
       </div>
       <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Jeudi — Legs <span class="badge b-amber" style="margin-left:auto">Quadris / Ischios / Fessiers</span></div>
-        <div class="session-header">Séance muscu — 12h00</div>
-        <div class="exo-row"><div><div class="exo-name">Squat barre</div><div class="exo-note">Descente 3s, dos neutre</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Leg press pieds hauts</div><div class="exo-note">Focus fessiers</div></div><span class="exo-sets">4 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Fentes marchées haltères</div><div class="exo-note">Genou à 90°, buste droit</div></div><span class="exo-sets">3 × 12/jambe</span></div>
-        <div class="exo-row"><div><div class="exo-name">Leg curl couché</div><div class="exo-note">Full amplitude</div></div><span class="exo-sets">4 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Hip thrust barre</div><div class="exo-note">Pause 1s en haut, serrer les fessiers</div></div><span class="exo-sets">4 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Mollets debout chargés</div><div class="exo-note">Full amplitude, pointe vers bas</div></div><span class="exo-sets">4 × 20</span></div>
-        <div class="exo-row"><div><div class="exo-name">Planche + gainage latéral</div></div><span class="exo-sets">3 × 45s + 30s</span></div>
+        <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Jeudi — Legs <span class="badge b-amber" style="margin-left:auto">Quadris/Ischios/Fessiers</span></div>
+        <div class="session-hdr">Muscu — 12h00</div>
+        <div class="exo-row"><div><div class="exo-name">Squat barre</div><div class="exo-note">Descente 3s, dos neutre</div></div><span class="exo-sets">4×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Leg press pieds hauts</div><div class="exo-note">Focus fessiers</div></div><span class="exo-sets">4×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Fentes marchées haltères</div><div class="exo-note">Genou 90°, buste droit</div></div><span class="exo-sets">3×12/jambe</span></div>
+        <div class="exo-row"><div><div class="exo-name">Leg curl couché</div><div class="exo-note">Full amplitude</div></div><span class="exo-sets">4×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Hip thrust barre</div><div class="exo-note">Pause 1s en haut, serrer les fessiers</div></div><span class="exo-sets">4×12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Mollets debout chargés</div><div class="exo-note">Full amplitude</div></div><span class="exo-sets">4×20</span></div>
+        <div class="exo-row"><div><div class="exo-name">Planche + gainage latéral</div></div><span class="exo-sets">3×45s+30s</span></div>
       </div>
       <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--purple)"></div>Vendredi — Full Upper <span class="badge b-purple" style="margin-left:auto">Force + Volume</span></div>
-        <div class="session-header">Séance muscu — 12h00</div>
-        <div class="exo-row"><div><div class="exo-name">Développé couché barre</div><div class="exo-note">Exercice de force principale — charges lourdes</div></div><span class="exo-sets">5 × 6–8</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tractions prise large</div><div class="exo-note">Lestées si possible</div></div><span class="exo-sets">4 × 8</span></div>
-        <div class="exo-row"><div><div class="exo-name">Rowing haltère unilatéral</div><div class="exo-note">Appui genou sur banc</div></div><span class="exo-sets">3 × 10/côté</span></div>
-        <div class="exo-row"><div><div class="exo-name">Développé militaire haltères</div><div class="exo-note">Debout de préférence</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl + extension triceps (superset)</div><div class="exo-note">Enchaîné sans repos</div></div><span class="exo-sets">3 × 12+12</span></div>
+        <div class="card-title"><div class="dot" style="background:var(--purple)"></div>Vendredi — Full Upper <span class="badge b-purple" style="margin-left:auto">Force+Volume</span></div>
+        <div class="session-hdr">Muscu — 12h00</div>
+        <div class="exo-row"><div><div class="exo-name">Développé couché barre</div><div class="exo-note">Charges lourdes</div></div><span class="exo-sets">5×6–8</span></div>
+        <div class="exo-row"><div><div class="exo-name">Tractions prise large</div><div class="exo-note">Lestées si possible</div></div><span class="exo-sets">4×8</span></div>
+        <div class="exo-row"><div><div class="exo-name">Rowing haltère unilatéral</div><div class="exo-note">Appui genou sur banc</div></div><span class="exo-sets">3×10/côté</span></div>
+        <div class="exo-row"><div><div class="exo-name">Développé militaire haltères</div><div class="exo-note">Debout de préférence</div></div><span class="exo-sets">4×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl + extension triceps (superset)</div><div class="exo-note">Enchaîné sans repos</div></div><span class="exo-sets">3×12+12</span></div>
         <div class="exo-row"><div><div class="exo-name">Circuit abdos 4 exos</div><div class="exo-note">Crunch / relevés / planche / bicycle</div></div><span class="exo-sets">3 tours</span></div>
       </div>
     </div>
   </div>
-
   <div id="sw2" style="display:none">
-    <div class="tip">S2 · +1 série sur exercices principaux · Repos réduit à 60–75 s · Introduction des supersets · Charges + 5%</div>
+    <div class="tip">S2 · +1 série sur exercices principaux · Repos 60–75s · Supersets introduits · Charges +5%</div>
     <div class="grid2">
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Push S2 — changements clés</div>
-        <div class="exo-row"><div><div class="exo-name">Développé barre (remplace haltères)</div><div class="exo-note">Charge maximale pour 8–10 reps</div></div><span class="exo-sets">5 × 8–10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Incliné + écarté enchaîné (superset)</div></div><span class="exo-sets">4 × 10+12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Latérales + oiseau (superset)</div><div class="exo-note">Zéro repos entre les deux</div></div><span class="exo-sets">4 × 15+15</span></div>
-        <div class="exo-row"><div><div class="exo-name">Dips lestés +2,5 kg</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tout le reste : +1 série</div></div><span class="exo-sets">+1</span></div>
+      <div class="card"><div class="card-title"><div class="dot"></div>Push S2</div>
+        <div class="exo-row"><div><div class="exo-name">Développé barre (remplace haltères)</div></div><span class="exo-sets">5×8–10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Incliné + écarté enchaîné (superset)</div></div><span class="exo-sets">4×10+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Latérales + oiseau (superset)</div></div><span class="exo-sets">4×15+15</span></div>
+        <div class="exo-row"><div><div class="exo-name">Dips lestés +2,5kg</div></div><span class="exo-sets">4×10</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Pull S2 — changements clés</div>
-        <div class="exo-row"><div><div class="exo-name">Tractions lestées +2,5 kg</div></div><span class="exo-sets">5 × 8</span></div>
-        <div class="exo-row"><div><div class="exo-name">Rowing haltère uni + tirage (superset)</div></div><span class="exo-sets">4 × 10+12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl 21s (7+7+7)</div><div class="exo-note">7 demi-bas + 7 demi-haut + 7 complet</div></div><span class="exo-sets">4 × 21</span></div>
-        <div class="exo-row"><div><div class="exo-name">Ajout : Curl concentré slow</div><div class="exo-note">4s excentrique</div></div><span class="exo-sets">3 × 10</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--teal)"></div>Pull S2</div>
+        <div class="exo-row"><div><div class="exo-name">Tractions lestées +2,5kg</div></div><span class="exo-sets">5×8</span></div>
+        <div class="exo-row"><div><div class="exo-name">Rowing haltère + tirage (superset)</div></div><span class="exo-sets">4×10+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl 21s (7+7+7)</div></div><span class="exo-sets">4×21</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Legs S2 — changements clés</div>
-        <div class="exo-row"><div><div class="exo-name">Squat + goblet squat (superset)</div></div><span class="exo-sets">4 × 10+12</span></div>
-        <div class="exo-row"><div><div class="exo-name">RDL haltères (s'ajoute au leg curl)</div><div class="exo-note">Jambes légèrement fléchies, dos neutre</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Hip thrust — drop set sur dernière série</div></div><span class="exo-sets">4 × 10+drop</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--accent)"></div>Legs S2</div>
+        <div class="exo-row"><div><div class="exo-name">Squat + goblet (superset)</div></div><span class="exo-sets">4×10+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">RDL haltères + leg curl</div></div><span class="exo-sets">4×10+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Hip thrust drop set final</div></div><span class="exo-sets">4×10+drop</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--purple)"></div>Upper S2 — changements clés</div>
-        <div class="exo-row"><div><div class="exo-name">Développé barre — charge max</div></div><span class="exo-sets">5 × 6</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tractions lestées</div></div><span class="exo-sets">5 × 8</span></div>
-        <div class="exo-row"><div><div class="exo-name">Superset épaules / dos arrière</div><div class="exo-note">Développé militaire + facepull</div></div><span class="exo-sets">4 × 10+15</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--purple)"></div>Upper S2</div>
+        <div class="exo-row"><div><div class="exo-name">Développé barre charge max</div></div><span class="exo-sets">5×6</span></div>
+        <div class="exo-row"><div><div class="exo-name">Tractions lestées</div></div><span class="exo-sets">5×8</span></div>
+        <div class="exo-row"><div><div class="exo-name">Militaire + facepull (superset)</div></div><span class="exo-sets">4×10+15</span></div>
       </div>
     </div>
   </div>
-
   <div id="sw3" style="display:none">
-    <div class="tip">S3 · Volume maximal · Drop sets + supersets systématiques · Repos 45–60 s maximum. Semaine la plus dure du programme.</div>
+    <div class="tip">S3 · Volume maximal · Drop sets + supersets systématiques · Repos 45–60s. Semaine la plus dure du programme.</div>
     <div class="grid2">
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Push S3 — charge maximale</div>
-        <div class="exo-row"><div><div class="exo-name">Développé barre + drop set final</div><div class="exo-note">Drop : –30% charge immédiatement à l'échec</div></div><span class="exo-sets">5 × 6 + drop</span></div>
-        <div class="exo-row"><div><div class="exo-name">Incliné haltères + écarté enchaîné</div></div><span class="exo-sets">5 × 10+12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Latérales câble unilatéral</div><div class="exo-note">Meilleure tension sur toute l'amplitude</div></div><span class="exo-sets">4 × 15/côté</span></div>
-        <div class="exo-row"><div><div class="exo-name">Dips lestés à l'échec</div></div><span class="exo-sets">4 × max</span></div>
-        <div class="exo-row"><div><div class="exo-name">Extension triceps overhead câble</div></div><span class="exo-sets">4 × 15</span></div>
+      <div class="card"><div class="card-title"><div class="dot"></div>Push S3 — volume max</div>
+        <div class="exo-row"><div><div class="exo-name">Développé barre + drop set</div><div class="exo-note">–30% charge à l'échec immédiat</div></div><span class="exo-sets">5×6+drop</span></div>
+        <div class="exo-row"><div><div class="exo-name">Incliné + écarté enchaîné</div></div><span class="exo-sets">5×10+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Latérales câble unilatéral</div></div><span class="exo-sets">4×15/côté</span></div>
+        <div class="exo-row"><div><div class="exo-name">Dips lestés à l'échec</div></div><span class="exo-sets">4×max</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Pull S3 — volume élevé</div>
-        <div class="exo-row"><div><div class="exo-name">Tractions libres à l'échec</div><div class="exo-note">Sans lest — qualité de mouvement maximale</div></div><span class="exo-sets">5 × max</span></div>
-        <div class="exo-row"><div><div class="exo-name">Rowing barre + rowing haltère enchaîné</div></div><span class="exo-sets">4 × 10+10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tirage poulie haute prise serrée</div></div><span class="exo-sets">4 × 12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl concentré slow (4s excentrique)</div></div><span class="exo-sets">4 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Curl 21s</div><div class="exo-note">7 bas + 7 haut + 7 complet</div></div><span class="exo-sets">3 × 21</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--teal)"></div>Pull S3 — volume élevé</div>
+        <div class="exo-row"><div><div class="exo-name">Tractions libres à l'échec</div></div><span class="exo-sets">5×max</span></div>
+        <div class="exo-row"><div><div class="exo-name">Rowing barre + haltère enchaîné</div></div><span class="exo-sets">4×10+10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl concentré 4s excentrique</div></div><span class="exo-sets">4×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl 21s</div></div><span class="exo-sets">3×21</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--accent)"></div>Legs S3 — pyramidal</div>
-        <div class="exo-row"><div><div class="exo-name">Squat barre pyramidal</div><div class="exo-note">12 / 10 / 8 / 8 / 10 / 12</div></div><span class="exo-sets">6 séries</span></div>
-        <div class="exo-row"><div><div class="exo-name">Fentes + step box enchaîné</div></div><span class="exo-sets">4 × 12+12</span></div>
-        <div class="exo-row"><div><div class="exo-name">Hip thrust drop set + pause rep</div><div class="exo-note">Pause 2s en position haute sur chaque rep</div></div><span class="exo-sets">5 × 10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Leg curl + RDL enchaîné</div></div><span class="exo-sets">4 × 10+10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Mollets assis + debout superset</div><div class="exo-note">Soleus + gastrocnémien</div></div><span class="exo-sets">4 × 20+20</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--accent)"></div>Legs S3 — pyramidal</div>
+        <div class="exo-row"><div><div class="exo-name">Squat pyramidal</div><div class="exo-note">12/10/8/8/10/12</div></div><span class="exo-sets">6 séries</span></div>
+        <div class="exo-row"><div><div class="exo-name">Fentes + step box enchaîné</div></div><span class="exo-sets">4×12+12</span></div>
+        <div class="exo-row"><div><div class="exo-name">Hip thrust drop + pause rep</div></div><span class="exo-sets">5×10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Leg curl + RDL enchaîné</div></div><span class="exo-sets">4×10+10</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--purple)"></div>Upper S3 — intensité max</div>
-        <div class="exo-row"><div><div class="exo-name">Développé couché barre</div></div><span class="exo-sets">6 × 5</span></div>
-        <div class="exo-row"><div><div class="exo-name">Tractions + rowing (superset)</div></div><span class="exo-sets">5 × 8+10</span></div>
-        <div class="exo-row"><div><div class="exo-name">Développé militaire barre debout</div></div><span class="exo-sets">4 × 8</span></div>
-        <div class="exo-row"><div><div class="exo-name">Superset bras complet</div><div class="exo-note">Curl + dips enchaîné</div></div><span class="exo-sets">4 × 10+10</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--purple)"></div>Upper S3 — intensité max</div>
+        <div class="exo-row"><div><div class="exo-name">Développé couché barre</div></div><span class="exo-sets">6×5</span></div>
+        <div class="exo-row"><div><div class="exo-name">Tractions + rowing (superset)</div></div><span class="exo-sets">5×8+10</span></div>
+        <div class="exo-row"><div><div class="exo-name">Militaire barre debout</div></div><span class="exo-sets">4×8</span></div>
+        <div class="exo-row"><div><div class="exo-name">Curl + dips (superset)</div></div><span class="exo-sets">4×10+10</span></div>
       </div>
     </div>
   </div>
-
   <div id="sw4" style="display:none">
-    <div class="tip">S4 · Volume –1 série · Intensité maintenue · Tempo 3-1-1 sur tout · Repos 60 s · Circuit abdos quotidien 10 min</div>
-    <div class="warn">Les 3 derniers jours : sodium légèrement réduit, eau à 4L/j. C'est la fenêtre où les abdos deviennent vraiment visibles.</div>
+    <div class="tip">S4 · –1 série · Intensité maintenue · Tempo 3-1-1 sur tout · Repos 60s · Circuit abdos quotidien 10min</div>
+    <div class="warn">J26–J28 : sodium légèrement réduit + eau à 4L/j. C'est là que les abdos apparaissent vraiment.</div>
     <div class="grid2">
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Règles S4 universelles</div>
-        <div class="exo-row"><span class="exo-name">Séries par exercice</span><span class="exo-sets">3 (vs 4–5 S3)</span></div>
-        <div class="exo-row"><span class="exo-name">Répétitions</span><span class="exo-sets">12–15 reps</span></div>
+      <div class="card"><div class="card-title"><div class="dot"></div>Règles S4</div>
+        <div class="exo-row"><span class="exo-name">Séries</span><span class="exo-sets">3 (vs 4–5 en S3)</span></div>
+        <div class="exo-row"><span class="exo-name">Reps</span><span class="exo-sets">12–15</span></div>
         <div class="exo-row"><span class="exo-name">Charges</span><span class="exo-sets">–10% vs S3</span></div>
         <div class="exo-row"><span class="exo-name">Tempo</span><span class="exo-sets">3-1-1 sur chaque exo</span></div>
-        <div class="exo-row"><span class="exo-name">Repos</span><span class="exo-sets">60 s maximum</span></div>
+        <div class="exo-row"><span class="exo-name">Repos</span><span class="exo-sets">60s maximum</span></div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--purple)"></div>Circuit abdos quotidien — 10 min</div>
-        <div class="exo-row"><div><div class="exo-name">Crunch câble</div><div class="exo-note">Contraction 2s en bas</div></div><span class="exo-sets">3 × 20</span></div>
-        <div class="exo-row"><div><div class="exo-name">Relevés jambes suspendus</div><div class="exo-note">Mouvement lent et contrôlé</div></div><span class="exo-sets">3 × 15</span></div>
-        <div class="exo-row"><div><div class="exo-name">Planche latérale</div><div class="exo-note">Hanche haute, corps aligné</div></div><span class="exo-sets">3 × 35s/côté</span></div>
-        <div class="exo-row"><div><div class="exo-name">Vacuum (estomac rentré)</div><div class="exo-note">Debout ou à 4 pattes</div></div><span class="exo-sets">3 × 30s</span></div>
-        <div class="exo-row"><div><div class="exo-name">Bicycle crunch</div><div class="exo-note">Rotation maximale, lent</div></div><span class="exo-sets">3 × 30</span></div>
+      <div class="card"><div class="card-title"><div class="dot" style="background:var(--purple)"></div>Circuit abdos quotidien — 10min</div>
+        <div class="exo-row"><div><div class="exo-name">Crunch câble</div><div class="exo-note">Contraction 2s en bas</div></div><span class="exo-sets">3×20</span></div>
+        <div class="exo-row"><div><div class="exo-name">Relevés jambes suspendus</div><div class="exo-note">Lent et contrôlé</div></div><span class="exo-sets">3×15</span></div>
+        <div class="exo-row"><div><div class="exo-name">Planche latérale</div><div class="exo-note">Hanche haute</div></div><span class="exo-sets">3×35s/côté</span></div>
+        <div class="exo-row"><div><div class="exo-name">Vacuum (estomac rentré)</div></div><span class="exo-sets">3×30s</span></div>
+        <div class="exo-row"><div><div class="exo-name">Bicycle crunch</div><div class="exo-note">Rotation maximale, lent</div></div><span class="exo-sets">3×30</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ NUTRITION ═══════════════════════════════ -->
+<!-- NUTRITION -->
 <div id="page-nutrition" class="page">
-  <div class="tip">Clique sur un jour dans le calendrier pour voir le plan repas complet. La couleur indique le type de journée : <span class="badge b-blue">Training</span> <span class="badge b-amber">Cardio seul</span> <span class="badge b-green">Repos</span></div>
-
-  <div id="cal-grid" class="cal-grid" style="margin-bottom:1.5rem"></div>
-
+  <div class="tip">Clique sur un jour du calendrier pour voir le plan repas complet avec les quantités exactes cru/cuit. Sans saumon · Sans épinards · Sans fruits de mer.</div>
+  <div id="cal-grid" class="cal-grid"></div>
   <div class="day-nav">
     <button onclick="changeDay(-1)" id="btn-prev">&#8592;</button>
     <div class="day-info">
       <div class="day-name" id="dn-name">Jour 1 — Lundi S1</div>
-      <div class="day-sub" id="dn-sub">Jour d'entraînement</div>
+      <div style="font-size:12px;margin-top:3px" id="dn-sub"></div>
     </div>
     <div class="day-counter" id="dn-counter">1 / 28</div>
     <button onclick="changeDay(1)" id="btn-next">&#8594;</button>
   </div>
-
   <div class="grid4" style="margin-bottom:1.5rem" id="macro-display"></div>
-
   <div class="card">
-    <div class="card-title"><div class="dot" style="background:var(--green)"></div>Plan repas du jour</div>
+    <div class="card-title"><div class="dot" style="background:var(--green)"></div>Plan repas complet — quantités exactes</div>
     <div id="meals-list"></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════ SUPPLÉMENTS ══════════════════════════════ -->
+<!-- COURSES -->
+<div id="page-courses" class="page">
+  <div class="tip">Liste de courses pour 1 semaine. Sans saumon · Sans épinards · Sans fruits de mer. Budget estimé : 50–65€.</div>
+  <div class="grid3">
+    <div class="card">
+      <div class="c-cat">Protéines</div>
+      <div class="c-item"><span>Blanc de poulet</span><span>800g</span></div>
+      <div class="c-item"><span>Bœuf haché 5% MG</span><span>400g</span></div>
+      <div class="c-item"><span>Thon en boîte (eau)</span><span>6 boîtes × 140g</span></div>
+      <div class="c-item"><span>Œufs entiers</span><span>18</span></div>
+      <div class="c-item"><span>Fromage blanc 0%</span><span>4 × 500g</span></div>
+      <div class="c-item"><span>Whey protéine</span><span>Vérifier stock</span></div>
+      <div class="c-item"><span>Caséine (optionnel)</span><span>Vérifier stock</span></div>
+    </div>
+    <div class="card">
+      <div class="c-cat">Glucides</div>
+      <div class="c-item"><span>Riz complet</span><span>800g cru</span></div>
+      <div class="c-item"><span>Flocons d'avoine</span><span>500g</span></div>
+      <div class="c-item"><span>Patate douce</span><span>600g cru</span></div>
+      <div class="c-item"><span>Quinoa</span><span>300g cru</span></div>
+      <div class="c-item"><span>Bananes</span><span>7</span></div>
+      <div class="c-item"><span>Fruits rouges surgelés</span><span>400g</span></div>
+      <div class="c-item"><span>Pain de riz (riz gâteau)</span><span>1 paquet</span></div>
+    </div>
+    <div class="card">
+      <div class="c-cat">Lipides & Légumes</div>
+      <div class="c-item"><span>Huile d'olive</span><span>1 bouteille</span></div>
+      <div class="c-item"><span>Amandes nature</span><span>150g</span></div>
+      <div class="c-item"><span>Beurre cacahuète naturel</span><span>1 pot</span></div>
+      <div class="c-item"><span>Avocat</span><span>3</span></div>
+      <div class="c-item"><span>Brocolis</span><span>600g</span></div>
+      <div class="c-item"><span>Courgettes</span><span>3</span></div>
+      <div class="c-item"><span>Haricots verts</span><span>400g</span></div>
+      <div class="c-item"><span>Concombre</span><span>1</span></div>
+      <div class="c-item"><span>Salade verte</span><span>1 sachet</span></div>
+      <div class="c-item"><span>Tomates</span><span>400g</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:.5rem">
+    <div class="c-cat">Suppléments & Boissons</div>
+    <div class="c-item"><span>Créatine monohydrate</span><span>5g/jour</span></div>
+    <div class="c-item"><span>Magnésium bisglycinate</span><span>400mg/soir</span></div>
+    <div class="c-item"><span>Café noir</span><span>Pour la course matin</span></div>
+    <div class="c-item"><span>Eau</span><span>3,5 L minimum/jour</span></div>
+  </div>
+</div>
+
+<!-- SUPPLÉMENTS -->
 <div id="page-supple" class="page">
-  <div class="section-title">Suppléments essentiels</div>
-  <div class="supp-grid">
+  <div class="stitle">Suppléments essentiels</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
     <div class="supp-card" style="border-top:3px solid var(--blue)">
       <div class="supp-name" style="color:var(--blue-light)">Créatine monohydrate</div>
       <div class="supp-row"><span>Dose</span><span>5g / jour</span></div>
       <div class="supp-row"><span>Timing</span><span>Post-training avec whey</span></div>
       <div class="supp-row"><span>Avec quoi</span><span>Eau ou jus de raisin</span></div>
       <div class="supp-row"><span>Phase de charge</span><span>Non nécessaire</span></div>
-      <div class="supp-row"><span>Rétention eau</span><span>Intramusculaire (bonne)</span></div>
     </div>
     <div class="supp-card" style="border-top:3px solid var(--green)">
       <div class="supp-name" style="color:var(--green-light)">Whey protéine</div>
       <div class="supp-row"><span>Dose</span><span>2 × 30g / jour</span></div>
-      <div class="supp-row"><span>Prise 1</span><span>Pré-training (16h)</span></div>
-      <div class="supp-row"><span>Prise 2</span><span>Post-training (immédiat)</span></div>
-      <div class="supp-row"><span>Jours de repos</span><span>1 dose si besoin</span></div>
+      <div class="supp-row"><span>Prise 1</span><span>Pré-training midi</span></div>
+      <div class="supp-row"><span>Prise 2</span><span>Post-training immédiat</span></div>
     </div>
     <div class="supp-card" style="border-top:3px solid var(--amber)">
       <div class="supp-name" style="color:var(--amber-light)">Caféine (café noir)</div>
       <div class="supp-row"><span>Dose</span><span>1–2 tasses</span></div>
       <div class="supp-row"><span>Timing</span><span>Avant course matin</span></div>
-      <div class="supp-row"><span>Stop</span><span>14h max (sommeil)</span></div>
-      <div class="supp-row"><span>Bénéfice</span><span>Mobilisation graisses + focus</span></div>
+      <div class="supp-row"><span>Stop</span><span>14h maximum</span></div>
     </div>
     <div class="supp-card" style="border-top:3px solid var(--purple)">
       <div class="supp-name" style="color:var(--purple-light)">Magnésium bisglycinate</div>
-      <div class="supp-row"><span>Dose</span><span>400 mg</span></div>
+      <div class="supp-row"><span>Dose</span><span>400mg</span></div>
       <div class="supp-row"><span>Timing</span><span>Le soir au coucher</span></div>
       <div class="supp-row"><span>Bénéfice</span><span>Récupération + sommeil</span></div>
     </div>
@@ -501,206 +450,206 @@
       <div class="supp-name" style="color:var(--accent)">Caséine (optionnel)</div>
       <div class="supp-row"><span>Dose</span><span>25g</span></div>
       <div class="supp-row"><span>Timing</span><span>Avant coucher</span></div>
-      <div class="supp-row"><span>Bénéfice</span><span>Protéine lente anti-catabole nuit</span></div>
+      <div class="supp-row"><span>Bénéfice</span><span>Anti-catabolisme nuit</span></div>
     </div>
   </div>
-
-  <div class="section-title">Aliments recommandés</div>
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Protéines</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2">Blanc de poulet · Saumon · Thon en boîte · Bœuf haché 5% · Œufs entiers · Fromage blanc 0% · Cabillaud · Crevettes</div>
-    </div>
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--amber)"></div>Glucides</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2">Riz complet · Flocons d'avoine · Patate douce · Quinoa · Banane · Fruits rouges · Pain de riz · Légumineuses</div>
-    </div>
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--green)"></div>Lipides bons</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2">Huile d'olive (1cs/repas) · Amandes · Beurre de cacahuète naturel · Avocat · Oméga-3 · Noix du Brésil</div>
-    </div>
-  </div>
-  <div class="warn">À éviter absolument : alcool · sucres raffinés · pain blanc · plats industriels · jus de fruits · sauces grasses · charcuteries</div>
 </div>
 
-<!-- ════════════════════════════════ RÈGLES ══════════════════════════════════ -->
+<!-- RÈGLES -->
 <div id="page-regles" class="page">
-  <div class="section-title">Règles anti-catabolisme</div>
+  <div class="stitle">Règles anti-catabolisme</div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title"><div class="dot"></div>Paramètres non négociables</div>
-      <div class="exo-row"><span class="exo-name">Protéines quotidiennes</span><span class="exo-sets" style="color:var(--green-light)">185g (2,3g/kg) — fixe</span></div>
-      <div class="exo-row"><span class="exo-name">Déficit calorique max</span><span class="exo-sets">–600 kcal/j</span></div>
+      <div class="card-title"><div class="dot"></div>Non négociables</div>
+      <div class="exo-row"><span class="exo-name">Protéines</span><span class="exo-sets" style="color:var(--green-light)">185g — fixe tous les jours</span></div>
+      <div class="exo-row"><span class="exo-name">Déficit max</span><span class="exo-sets">–600 kcal/jour</span></div>
       <div class="exo-row"><span class="exo-name">Sommeil</span><span class="exo-sets">7–8h minimum</span></div>
-      <div class="exo-row"><span class="exo-name">Hydratation</span><span class="exo-sets">3,5 L/jour (4L S4)</span></div>
-      <div class="exo-row"><span class="exo-name">Repas post-muscu</span><span class="exo-sets">Dans les 30 min</span></div>
-      <div class="exo-row"><span class="exo-name">Perte de poids visée</span><span class="exo-sets">0,5–0,8 kg/semaine</span></div>
+      <div class="exo-row"><span class="exo-name">Hydratation</span><span class="exo-sets">3,5L/jour (4L en S4)</span></div>
+      <div class="exo-row"><span class="exo-name">Post-muscu</span><span class="exo-sets">Whey + glucides dans 30min</span></div>
+      <div class="exo-row"><span class="exo-name">Perte visée</span><span class="exo-sets">0,5–0,8 kg/semaine</span></div>
     </div>
     <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--green)"></div>Récupération active</div>
-      <div class="exo-row"><span class="exo-name">Mercredi</span><span class="exo-sets">Marche 30' max + stretching 20'</span></div>
-      <div class="exo-row"><span class="exo-name">Dimanche</span><span class="exo-sets">Repos total absolu</span></div>
-      <div class="exo-row"><span class="exo-name">Foam rolling</span><span class="exo-sets">10 min après chaque cardio soir</span></div>
-      <div class="exo-row"><span class="exo-name">Bain froid (optionnel)</span><span class="exo-sets">2–3 min à 12–15°C post-séance</span></div>
-      <div class="exo-row"><span class="exo-name">Stretching post-muscu</span><span class="exo-sets">10 min minimum</span></div>
-    </div>
-  </div>
-
-  <div class="section-title">Signaux d'alerte</div>
-  <div class="grid2">
-    <div class="card" style="border-left:3px solid var(--red)">
-      <div class="card-title"><div class="dot" style="background:var(--red)"></div>Stop — agir immédiatement</div>
-      <div class="exo-row"><span class="exo-name">Perte de force &gt;10% exos de base</span><span class="exo-sets" style="color:var(--amber-light)">+30g glucides 2 jours</span></div>
-      <div class="exo-row"><span class="exo-name">Fatigue chronique &gt;4 jours</span><span class="exo-sets" style="color:var(--amber-light)">Supprimer 1 cardio/semaine</span></div>
+      <div class="card-title"><div class="dot" style="background:var(--red)"></div>Signaux d'alerte — agir immédiatement</div>
+      <div class="exo-row"><span class="exo-name">Perte de force &gt;10%</span><span class="exo-sets" style="color:var(--amber-light)">+30g glucides 2 jours</span></div>
+      <div class="exo-row"><span class="exo-name">Fatigue chronique &gt;4j</span><span class="exo-sets" style="color:var(--amber-light)">Supprimer 1 cardio/sem</span></div>
       <div class="exo-row"><span class="exo-name">Douleur articulaire</span><span class="exo-sets" style="color:var(--red-light)">Stop — consulter</span></div>
-      <div class="exo-row"><span class="exo-name">Troubles du sommeil persistants</span><span class="exo-sets" style="color:var(--amber-light)">Réduire HIIT + magnésium</span></div>
-      <div class="exo-row"><span class="exo-name">Irritabilité / démotivation forte</span><span class="exo-sets" style="color:var(--amber-light)">Refeed day +100g glucides</span></div>
-    </div>
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--amber)"></div>Semaine de décharge (si nécessaire)</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px">Si fatigue chronique après 2 semaines : insérer une semaine de décharge. Mieux vaut ralentir 5 jours que de casser le programme entier.</p>
-      <div class="exo-row"><span class="exo-name">Volume muscu</span><span class="exo-sets">–40%</span></div>
-      <div class="exo-row"><span class="exo-name">Cardio</span><span class="exo-sets">Marche uniquement</span></div>
-      <div class="exo-row"><span class="exo-name">Calories</span><span class="exo-sets">Maintenance (déficit nul)</span></div>
-      <div class="exo-row"><span class="exo-name">Durée</span><span class="exo-sets">5–7 jours max</span></div>
+      <div class="exo-row"><span class="exo-name">Troubles du sommeil</span><span class="exo-sets" style="color:var(--amber-light)">Réduire HIIT + magnésium</span></div>
+      <div class="exo-row"><span class="exo-name">Démotivation forte</span><span class="exo-sets" style="color:var(--amber-light)">Refeed day +100g glucides</span></div>
     </div>
   </div>
+  <div class="warn">Programme très intensif. Si fatigue chronique après 2 semaines : insérer une semaine de décharge (volume –40%). Mieux vaut ralentir 5 jours que de tout casser.</div>
 </div>
 
 <script>
-const DAYS = [
-  {name:'Lundi',week:1,type:'training',gluc:220,lip:60,day:'L'},
-  {name:'Mardi',week:1,type:'training',gluc:220,lip:60,day:'Ma'},
-  {name:'Mercredi',week:1,type:'rest',gluc:130,lip:65,day:'Me'},
-  {name:'Jeudi',week:1,type:'training',gluc:220,lip:60,day:'J'},
-  {name:'Vendredi',week:1,type:'training',gluc:220,lip:60,day:'V'},
-  {name:'Samedi',week:1,type:'cardio',gluc:160,lip:60,day:'Sa'},
-  {name:'Dimanche',week:1,type:'rest',gluc:120,lip:65,day:'Di'},
-  {name:'Lundi',week:2,type:'training',gluc:230,lip:58,day:'L'},
-  {name:'Mardi',week:2,type:'training',gluc:230,lip:58,day:'Ma'},
-  {name:'Mercredi',week:2,type:'rest',gluc:125,lip:65,day:'Me'},
-  {name:'Jeudi',week:2,type:'training',gluc:230,lip:58,day:'J'},
-  {name:'Vendredi',week:2,type:'training',gluc:230,lip:58,day:'V'},
-  {name:'Samedi',week:2,type:'cardio',gluc:155,lip:60,day:'Sa'},
-  {name:'Dimanche',week:2,type:'rest',gluc:115,lip:65,day:'Di'},
-  {name:'Lundi',week:3,type:'training',gluc:215,lip:58,day:'L'},
-  {name:'Mardi',week:3,type:'training',gluc:215,lip:58,day:'Ma'},
-  {name:'Mercredi',week:3,type:'rest',gluc:120,lip:65,day:'Me'},
-  {name:'Jeudi',week:3,type:'training',gluc:215,lip:58,day:'J'},
-  {name:'Vendredi',week:3,type:'training',gluc:215,lip:58,day:'V'},
-  {name:'Samedi',week:3,type:'cardio',gluc:150,lip:60,day:'Sa'},
-  {name:'Dimanche',week:3,type:'rest',gluc:110,lip:65,day:'Di'},
-  {name:'Lundi',week:4,type:'training',gluc:200,lip:55,day:'L'},
-  {name:'Mardi',week:4,type:'training',gluc:200,lip:55,day:'Ma'},
-  {name:'Mercredi',week:4,type:'rest',gluc:110,lip:65,day:'Me'},
-  {name:'Jeudi',week:4,type:'training',gluc:200,lip:55,day:'J'},
-  {name:'Vendredi',week:4,type:'training',gluc:200,lip:55,day:'V'},
-  {name:'Samedi',week:4,type:'cardio',gluc:140,lip:58,day:'Sa'},
-  {name:'Dimanche',week:4,type:'rest',gluc:100,lip:65,day:'Di'},
+const DAYS=[
+  {name:'Lundi',week:1,type:'training',gluc:220,lip:60},{name:'Mardi',week:1,type:'training',gluc:220,lip:60},
+  {name:'Mercredi',week:1,type:'rest',gluc:130,lip:65},{name:'Jeudi',week:1,type:'training',gluc:220,lip:60},
+  {name:'Vendredi',week:1,type:'training',gluc:220,lip:60},{name:'Samedi',week:1,type:'cardio',gluc:160,lip:60},
+  {name:'Dimanche',week:1,type:'rest',gluc:120,lip:65},
+  {name:'Lundi',week:2,type:'training',gluc:230,lip:58},{name:'Mardi',week:2,type:'training',gluc:230,lip:58},
+  {name:'Mercredi',week:2,type:'rest',gluc:125,lip:65},{name:'Jeudi',week:2,type:'training',gluc:230,lip:58},
+  {name:'Vendredi',week:2,type:'training',gluc:230,lip:58},{name:'Samedi',week:2,type:'cardio',gluc:155,lip:60},
+  {name:'Dimanche',week:2,type:'rest',gluc:115,lip:65},
+  {name:'Lundi',week:3,type:'training',gluc:215,lip:58},{name:'Mardi',week:3,type:'training',gluc:215,lip:58},
+  {name:'Mercredi',week:3,type:'rest',gluc:120,lip:65},{name:'Jeudi',week:3,type:'training',gluc:215,lip:58},
+  {name:'Vendredi',week:3,type:'training',gluc:215,lip:58},{name:'Samedi',week:3,type:'cardio',gluc:150,lip:60},
+  {name:'Dimanche',week:3,type:'rest',gluc:110,lip:65},
+  {name:'Lundi',week:4,type:'training',gluc:200,lip:55},{name:'Mardi',week:4,type:'training',gluc:200,lip:55},
+  {name:'Mercredi',week:4,type:'rest',gluc:110,lip:65},{name:'Jeudi',week:4,type:'training',gluc:200,lip:55},
+  {name:'Vendredi',week:4,type:'training',gluc:200,lip:55},{name:'Samedi',week:4,type:'cardio',gluc:140,lip:58},
+  {name:'Dimanche',week:4,type:'rest',gluc:100,lip:65},
 ];
 
-const MEALS_TRAINING = [
-  {time:'6h15', label:'Pré-course (à jeun)', detail:'Café noir · Eau 500ml', macros:{p:0,g:0,l:0}},
-  {time:'7h15', label:'Post-course — Petit-déjeuner', detail:'5 œufs entiers brouillés · Flocons d\'avoine 80g · Banane 1 · Fromage blanc 0% 150g', macros:{p:50,g:75,l:18}},
-  {time:'10h30', label:'Collation matinale', detail:'Whey 30g (dans eau froide) · Riz gâteau ou patate douce 50g · Amandes 20g', macros:{p:28,g:38,l:12}},
-  {time:'11h45', label:'Pré-muscu — Déjeuner léger', detail:'Riz complet 80g (cru) · Thon en boîte 130g · Salade verte · Huile d\'olive 1 cs', macros:{p:32,g:62,l:10}},
-  {time:'13h30', label:'Post-muscu — Dans les 30 min !', detail:'Whey 30g + Créatine 5g · Banane 1 (ou 200ml jus de raisin)', macros:{p:28,g:30,l:2}},
-  {time:'16h00', label:'Collation après-midi', detail:'Poulet grillé 150g · Riz complet 70g cuit · Courgettes vapeur', macros:{p:35,g:30,l:5}},
-  {time:'19h30', label:'Dîner — Post-marche inclinée', detail:'Saumon 160g OU Bœuf haché 5% 170g · Légumes rôtis (brocolis, haricots verts) · Quinoa 60g', macros:{p:38,g:18,l:14}},
-  {time:'22h00', label:'Avant coucher', detail:'Fromage blanc 0% 200g OU Caséine 25g · Beurre de cacahuète naturel 15g', macros:{p:30,g:8,l:10}},
+const MT=[
+  {time:'8h00',label:'Petit-déjeuner — post-course',
+   items:[{n:'Œufs entiers',q:'4 œufs',p:'brouillés ou omelette, poêle sans beurre'},{n:'Blancs d\'œufs',q:'3 blancs supplémentaires',p:'ajoutés aux œufs entiers'},{n:'Flocons d\'avoine',q:'80g à sec (cru)',p:'porridge : cuire 3min avec 200ml eau'},{n:'Banane',q:'1 moyenne (~120g)',p:'crue, à manger après'},{n:'Fromage blanc 0%',q:'150g',p:'nature ou avec les flocons'}],
+   mac:{p:48,g:78,l:16}},
+  {time:'10h30',label:'Collation — pré-muscu (shaker)',
+   items:[{n:'Whey protéine',q:'30g (1 scoop)',p:'shaker dans 300ml eau froide'},{n:'Pain de riz (riz gâteau)',q:'2 galettes (~25g)',p:'à manger avec le shaker'},{n:'Amandes nature',q:'20g (~15 amandes)',p:'à croquer, non grillées de préférence'}],
+   mac:{p:28,g:22,l:10}},
+  {time:'12h00',label:'Déjeuner — pré-muscu',
+   items:[{n:'Blanc de poulet',q:'160g cru → ~130g cuit',p:'grillé poêle, huile olive, 6–8min/face'},{n:'Riz complet',q:'80g cru → ~240g cuit',p:'cuire 35min eau bouillante salée'},{n:'Brocolis',q:'150g cru',p:'vapeur 10min ou micro-ondes 5min'},{n:'Huile d\'olive',q:'10ml (1 cs)',p:'pour la cuisson du poulet'}],
+   mac:{p:38,g:64,l:12}},
+  {time:'13h30',label:'POST-MUSCU — dans les 30 minutes !',
+   items:[{n:'Whey protéine',q:'30g (1 scoop)',p:'shaker avec eau'},{n:'Créatine monohydrate',q:'5g',p:'mélangé dans le shaker whey'},{n:'Banane',q:'1 banane (~120g)',p:'ou 200ml jus de raisin si pas de banane'}],
+   mac:{p:28,g:32,l:1}},
+  {time:'16h00',label:'Collation après-midi',
+   items:[{n:'Blanc de poulet',q:'120g cru → ~95g cuit',p:'batch cooking : reste du déjeuner ou grillé'},{n:'Riz complet',q:'60g cru → ~180g cuit',p:'reste du déjeuner'},{n:'Courgette',q:'100g cru',p:'sautée 5min à la poêle avec un filet d\'huile'}],
+   mac:{p:30,g:50,l:4}},
+  {time:'19h30',label:'Dîner — post-marche inclinée',
+   items:[{n:'Bœuf haché 5%',q:'170g cru → ~145g cuit',p:'poêle antiadhésive sans matière grasse, 5min'},{n:'Quinoa',q:'60g cru → ~150g cuit',p:'cuire 15min : 1 volume quinoa / 2 volumes eau'},{n:'Haricots verts',q:'150g cru',p:'vapeur 8min ou poêlés'},{n:'Huile d\'olive',q:'5ml (1/2 cs)',p:'filet sur les légumes à la fin'}],
+   mac:{p:40,g:46,l:14}},
+  {time:'22h00',label:'Avant coucher',
+   items:[{n:'Fromage blanc 0%',q:'200g',p:'ou caséine 25g dans 300ml eau'},{n:'Beurre de cacahuète naturel',q:'15g (1 cs rase)',p:'sans huile de palme ni sucre ajouté'}],
+   mac:{p:28,g:8,l:12}},
 ];
 
-const MEALS_REST = [
-  {time:'7h30', label:'Petit-déjeuner', detail:'4 œufs entiers + 3 blancs · Flocons d\'avoine 50g · Myrtilles · Café noir', macros:{p:40,g:48,l:15}},
-  {time:'10h30', label:'Collation', detail:'Fromage blanc 0% 200g · Amandes 20g · Cannelle', macros:{p:22,g:8,l:12}},
-  {time:'13h00', label:'Déjeuner', detail:'Blanc de poulet 200g · Légumes verts vapeur (brocolis, haricots) · Huile d\'olive 1cs · Feta 30g', macros:{p:48,g:12,l:15}},
-  {time:'16h00', label:'Collation', detail:'Thon en boîte 130g · Concombre tranché · 2 œufs durs', macros:{p:38,g:3,l:10}},
-  {time:'19h30', label:'Dîner', detail:'Saumon ou cabillaud 170g · Brocolis + épinards · Patate douce 80g (seule source glucides du repas)', macros:{p:38,g:42,l:14}},
-  {time:'22h00', label:'Avant coucher', detail:'Caséine 25g OU Fromage blanc 0% 150g · Beurre d\'amande 1cs', macros:{p:28,g:6,l:10}},
+const MR=[
+  {time:'8h30',label:'Petit-déjeuner',
+   items:[{n:'Œufs entiers',q:'3 œufs',p:'brouillés ou omelette'},{n:'Blancs d\'œufs',q:'4 blancs',p:'avec les œufs entiers'},{n:'Flocons d\'avoine',q:'50g à sec (cru)',p:'porridge avec 150ml eau, 2min micro-ondes'},{n:'Fruits rouges',q:'100g surgelés',p:'décongelés ou chauffés 1min micro-ondes'}],
+   mac:{p:40,g:48,l:13}},
+  {time:'11h00',label:'Collation',
+   items:[{n:'Fromage blanc 0%',q:'200g',p:'nature'},{n:'Amandes nature',q:'20g (~15 amandes)',p:'non grillées'}],
+   mac:{p:22,g:8,l:10}},
+  {time:'13h30',label:'Déjeuner',
+   items:[{n:'Blanc de poulet',q:'200g cru → ~160g cuit',p:'four 20min à 180°C ou poêle'},{n:'Patate douce',q:'120g cru → ~110g cuit',p:'four 25min à 200°C ou vapeur 15min'},{n:'Brocolis',q:'200g cru',p:'vapeur 10min'},{n:'Huile d\'olive',q:'10ml (1 cs)',p:'sur les légumes après cuisson'}],
+   mac:{p:46,g:32,l:12}},
+  {time:'16h00',label:'Collation',
+   items:[{n:'Thon en boîte (eau)',q:'1 boîte 140g → 100g net égoutté',p:'rincer sous l\'eau, égoutter'},{n:'Concombre',q:'100g cru',p:'tranché en rondelles'},{n:'Œufs durs',q:'2 œufs',p:'cuire 10min eau bouillante, refroidir'}],
+   mac:{p:36,g:4,l:10}},
+  {time:'20h00',label:'Dîner',
+   items:[{n:'Blanc de poulet',q:'180g cru → ~145g cuit',p:'grillé ou rôti four 20min'},{n:'Haricots verts',q:'200g cru',p:'vapeur 8min'},{n:'Courgette',q:'150g cru',p:'rôtie four 15min à 200°C'},{n:'Huile d\'olive',q:'5ml (1/2 cs)',p:'filet à la fin'}],
+   mac:{p:42,g:12,l:9}},
+  {time:'22h00',label:'Avant coucher',
+   items:[{n:'Fromage blanc 0%',q:'200g',p:'ou caséine 25g dans eau'},{n:'Beurre de cacahuète naturel',q:'10g',p:'sans sucre ajouté'}],
+   mac:{p:26,g:6,l:9}},
 ];
 
-const MEALS_CARDIO = [
-  {time:'6h45', label:'Pré-course longue (à jeun)', detail:'Café noir · Eau 500ml — pas de nourriture', macros:{p:0,g:0,l:0}},
-  {time:'8h15', label:'Post-course — Petit-déjeuner', detail:'Whey 30g · Flocons d\'avoine 80g · Banane · Fromage blanc 100g', macros:{p:45,g:75,l:8}},
-  {time:'10h30', label:'Pré-marche inclinée', detail:'Poulet grillé 150g · Riz complet 80g cuit · Légumes verts', macros:{p:35,g:30,l:5}},
-  {time:'12h00', label:'Post-marche', detail:'Fromage blanc 0% 150g · Fruits rouges 100g · Amandes 15g', macros:{p:18,g:20,l:9}},
-  {time:'14h30', label:'Déjeuner', detail:'4 œufs entiers · Saumon fumé 80g · Avocat 60g · Salade composée', macros:{p:38,g:5,l:22}},
-  {time:'18h30', label:'Dîner', detail:'Bœuf haché 5% 160g · Légumes rôtis variés · Patate douce 70g', macros:{p:35,g:32,l:10}},
-  {time:'22h00', label:'Avant coucher', detail:'Caséine 25g OU Fromage blanc 0% 200g', macros:{p:28,g:6,l:2}},
+const MC=[
+  {time:'8h00',label:'Post-course longue',
+   items:[{n:'Whey protéine',q:'30g (1 scoop)',p:'shaker eau froide'},{n:'Flocons d\'avoine',q:'80g à sec (cru)',p:'porridge avec eau chaude'},{n:'Banane',q:'1 moyenne (~120g)',p:'crue'},{n:'Fromage blanc 0%',q:'100g',p:'avec les flocons'}],
+   mac:{p:44,g:76,l:6}},
+  {time:'10h30',label:'Collation — pré-marche inclinée',
+   items:[{n:'Blanc de poulet',q:'150g cru → ~120g cuit',p:'grillé poêle ou batch cooking'},{n:'Riz complet',q:'60g cru → ~180g cuit',p:'cuit à l\'eau'},{n:'Haricots verts',q:'100g cru',p:'vapeur 8min'}],
+   mac:{p:34,g:50,l:4}},
+  {time:'12h30',label:'Post-marche inclinée',
+   items:[{n:'Fromage blanc 0%',q:'150g',p:'nature'},{n:'Fruits rouges surgelés',q:'100g',p:'décongelés'},{n:'Amandes nature',q:'15g',p:'~10 amandes'}],
+   mac:{p:16,g:18,l:9}},
+  {time:'15h00',label:'Déjeuner',
+   items:[{n:'Œufs entiers',q:'4 œufs',p:'omelette poêle antiadhésive'},{n:'Thon en boîte (eau)',q:'1 boîte 140g → 100g net',p:'égoutté, rincé — ajouté dans l\'omelette'},{n:'Avocat',q:'60g (~1/2 petit avocat)',p:'tranché à côté'},{n:'Salade verte',q:'50g',p:'assaisonnée vinaigre de vin'},{n:'Tomates',q:'100g',p:'coupées en quartiers'}],
+   mac:{p:38,g:6,l:22}},
+  {time:'18h30',label:'Dîner',
+   items:[{n:'Bœuf haché 5%',q:'160g cru → ~135g cuit',p:'poêle sans matière grasse 5min'},{n:'Patate douce',q:'100g cru → ~90g cuit',p:'four 25min ou vapeur'},{n:'Courgette',q:'150g cru',p:'rôtie four 15min à 200°C'},{n:'Huile d\'olive',q:'5ml (1/2 cs)',p:'sur les légumes'}],
+   mac:{p:34,g:36,l:12}},
+  {time:'22h00',label:'Avant coucher',
+   items:[{n:'Fromage blanc 0%',q:'200g',p:'ou caséine 25g dans 300ml eau'}],
+   mac:{p:20,g:6,l:1}},
 ];
 
-let currentDay = 0;
+let cur=0;
 
-function kcal(d){ return Math.round(185*4 + d.gluc*4 + d.lip*9); }
-function typeLabel(t){ return t==='training'?'Jour entraînement':t==='cardio'?'Cardio seul':'Jour de repos'; }
-function typeBadge(t){ return t==='training'?'b-blue':t==='cardio'?'b-amber':'b-green'; }
+function kcal(d){return Math.round(185*4+d.gluc*4+d.lip*9)}
+function typeLabel(t){return t==='training'?'Jour entraînement — glucides élevés':t==='cardio'?'Cardio seul — glucides modérés':'Jour de repos — glucides bas'}
+function typeBadge(t){return t==='training'?'background:var(--blue-bg);color:var(--blue-light)':t==='cardio'?'background:var(--amber-bg);color:var(--amber-light)':'background:var(--green-bg);color:var(--green-light)'}
+function shortD(d){const m={Lundi:'L',Mardi:'Ma',Mercredi:'Me',Jeudi:'J',Vendredi:'V',Samedi:'Sa',Dimanche:'Di'};return (m[d.name]||d.name.slice(0,2))+' S'+d.week}
 
-function buildCalendar(){
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
+function buildCal(){
+  const g=document.getElementById('cal-grid');g.innerHTML='';
   DAYS.forEach((d,i)=>{
-    const div = document.createElement('div');
-    div.className = 'cal-day '+d.type+(i===currentDay?' selected':'');
-    div.innerHTML = `<div class="cd-num">J${i+1}</div><div class="cd-name" style="color:${d.type==='training'?'#93c5fd':d.type==='cardio'?'#fcd34d':'#86efac'}">${d.day} S${d.week}</div><div class="cd-type">${d.type==='training'?'Training':d.type==='cardio'?'Cardio':'Repos'}</div><div class="cd-kcal">${kcal(d)} kcal</div>`;
-    div.onclick = ()=>{ currentDay=i; renderDay(); buildCalendar(); };
-    grid.appendChild(div);
+    const el=document.createElement('div');
+    el.className='cal-day '+d.type+(i===cur?' selected':'');
+    const c=d.type==='training'?'#93c5fd':d.type==='cardio'?'#fcd34d':'#86efac';
+    el.innerHTML=`<div class="cdn">J${i+1}</div><div class="cdd" style="color:${c}">${shortD(d)}</div><div class="cdt">${d.type==='training'?'Train':d.type==='cardio'?'Cardio':'Repos'}</div><div class="cdk">${kcal(d)}</div>`;
+    el.onclick=()=>{cur=i;renderDay();buildCal()};
+    g.appendChild(el);
   });
 }
 
 function renderDay(){
-  const d = DAYS[currentDay];
-  document.getElementById('dn-name').textContent = `Jour ${currentDay+1} — ${d.name} S${d.week}`;
-  document.getElementById('dn-sub').innerHTML = `<span class="badge ${typeBadge(d.type)}">${typeLabel(d.type)}</span>`;
-  document.getElementById('dn-counter').textContent = `${currentDay+1} / 28`;
-  document.getElementById('btn-prev').disabled = currentDay===0;
-  document.getElementById('btn-next').disabled = currentDay===27;
-
-  const macroEl = document.getElementById('macro-display');
-  macroEl.innerHTML = `
-    <div class="macro-card"><div class="num" style="color:#93c5fd">${185}g</div><div class="unit">Protéines</div></div>
+  const d=DAYS[cur];
+  document.getElementById('dn-name').textContent=`Jour ${cur+1} — ${d.name} S${d.week}`;
+  document.getElementById('dn-sub').innerHTML=`<span class="badge" style="${typeBadge(d.type)}">${typeLabel(d.type)}</span>`;
+  document.getElementById('dn-counter').textContent=`${cur+1} / 28`;
+  document.getElementById('btn-prev').disabled=cur===0;
+  document.getElementById('btn-next').disabled=cur===27;
+  document.getElementById('macro-display').innerHTML=`
+    <div class="macro-card"><div class="num" style="color:#93c5fd">185g</div><div class="unit">Protéines</div></div>
     <div class="macro-card"><div class="num" style="color:#fcd34d">${d.gluc}g</div><div class="unit">Glucides</div></div>
     <div class="macro-card"><div class="num" style="color:#86efac">${d.lip}g</div><div class="unit">Lipides</div></div>
     <div class="macro-card"><div class="num" style="color:#fb923c">${kcal(d)}</div><div class="unit">Kcal totales</div></div>
   `;
-
-  const meals = d.type==='training'?MEALS_TRAINING:d.type==='cardio'?MEALS_CARDIO:MEALS_REST;
-  const mealsList = document.getElementById('meals-list');
-  mealsList.innerHTML = meals.map(m=>`
+  const meals=d.type==='training'?MT:d.type==='cardio'?MC:MR;
+  const tP=meals.reduce((s,m)=>s+m.mac.p,0);
+  const tG=meals.reduce((s,m)=>s+m.mac.g,0);
+  const tL=meals.reduce((s,m)=>s+m.mac.l,0);
+  document.getElementById('meals-list').innerHTML=meals.map(m=>`
     <div class="meal-row">
       <div class="meal-time">${m.time}</div>
       <div class="meal-content">
         <div class="meal-label">${m.label}</div>
-        <div class="meal-detail">${m.detail}</div>
-        ${m.macros.p>0?`<div class="meal-macros"><span class="meal-macro">P: ${m.macros.p}g</span><span class="meal-macro">G: ${m.macros.g}g</span><span class="meal-macro">L: ${m.macros.l}g</span><span class="meal-macro">${Math.round(m.macros.p*4+m.macros.g*4+m.macros.l*9)} kcal</span></div>`:''}
+        <div class="meal-items">
+          ${m.items.map(it=>`
+            <div class="meal-item">
+              <div class="item-name">${it.n}${it.p?`<div class="item-prep">→ ${it.p}</div>`:''}</div>
+              <div class="item-qty">${it.q}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="meal-macros">
+          <span class="mmac">P : ${m.mac.p}g</span>
+          <span class="mmac">G : ${m.mac.g}g</span>
+          <span class="mmac">L : ${m.mac.l}g</span>
+          <span class="mmac kcal">${Math.round(m.mac.p*4+m.mac.g*4+m.mac.l*9)} kcal</span>
+        </div>
       </div>
     </div>
-  `).join('');
+  `).join('')+`
+    <div class="total-bar">
+      <span style="color:var(--muted);font-weight:600">Total journée :</span>
+      <span><strong style="color:#93c5fd">${tP}g</strong> protéines</span>
+      <span><strong style="color:#fcd34d">${tG}g</strong> glucides</span>
+      <span><strong style="color:#86efac">${tL}g</strong> lipides</span>
+      <span><strong style="color:#fb923c">${Math.round(tP*4+tG*4+tL*9)} kcal</strong></span>
+    </div>
+  `;
 }
 
-function changeDay(dir){
-  currentDay = Math.max(0,Math.min(27,currentDay+dir));
-  renderDay();
-  buildCalendar();
-}
+function changeDay(dir){cur=Math.max(0,Math.min(27,cur+dir));renderDay();buildCal()}
 
-function showPage(name){
+function showPage(name,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
 }
 
 function showWeek(n,btn){
   document.querySelectorAll('.week-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  [1,2,3,4].forEach(i=>{
-    const el=document.getElementById('sw'+i);
-    if(el) el.style.display=(i===n)?'block':'none';
-  });
+  [1,2,3,4].forEach(i=>{const el=document.getElementById('sw'+i);if(el)el.style.display=i===n?'block':'none'});
 }
 
-buildCalendar();
-renderDay();
+buildCal();renderDay();
 </script>
 </body>
 </html>
